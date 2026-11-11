@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Quản trị nội dung – Bản đồ văn hoá số Vĩnh Gia 2</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Serif:wght@700&display=swap">
+<style>
+:root{--red:#da251d;--ink:#1c2233;--mute:#5d6578;--bg:#fbf7f1;--line:#eadfce;--blue:#0f4c9a;--green:#1f7a4d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 'Be Vietnam Pro',system-ui,sans-serif}
+header{background:linear-gradient(135deg,#da251d,#8e120e);color:#fff;padding:18px 16px}header div{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+h1{font:700 1.4rem 'Noto Serif',serif;margin:0}header a{color:#ffe08a;font-weight:600}
+main{max-width:1100px;margin:0 auto;padding:18px 16px 50px}h2{font:700 1.2rem 'Noto Serif',serif;color:#b31a14;margin:0 0 10px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin:0 0 14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}@media(max-width:800px){.two{grid-template-columns:1fr}}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}.tabs button{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:8px 18px;font:600 .92rem inherit;cursor:pointer}.tabs button[aria-pressed=true]{background:var(--red);border-color:var(--red);color:#fff}
+label{display:block;font-weight:500;font-size:.9rem;margin:0 0 10px}input,select,textarea{width:100%;font:400 1rem inherit;padding:9px 11px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.btn{display:inline-block;background:var(--red);color:#fff;border:0;border-radius:999px;padding:9px 20px;font:600 .92rem inherit;cursor:pointer;text-decoration:none}.btn.o{background:none;color:var(--red);border:1.5px solid var(--red)}.btn.g{background:var(--green)}
+.it{display:flex;justify-content:space-between;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:8px 0}.it:last-child{border:0}.it small{color:var(--mute);display:block}
+ol{margin:0;padding-left:20px}li{margin:4px 0}textarea.out{font:.82rem/1.4 ui-monospace,Consolas,monospace;height:200px;background:#f6f1e8}
+.hint{color:var(--mute);font-size:.88rem}.ok{color:var(--green);font-weight:600}
+:focus-visible{outline:3px solid #f5c542;outline-offset:2px}
+</style>
+</head>
+<body>
+<header><div><h1>Quản trị nội dung</h1><a href="./">← Về trang bản đồ</a></div></header>
+<main>
+<div class="card"><h2>Cách cập nhật (4 bước)</h2><ol>
+<li>Chọn mục cần cập nhật: hoạt động, lớp học hoặc sản phẩm.</li>
+<li>Điền biểu mẫu rồi bấm <b>Lưu vào danh sách</b>. Muốn sửa hoặc xoá thì bấm nút ở danh sách bên phải.</li>
+<li>Bấm <b>Sao chép nội dung</b> ở phần cuối trang.</li>
+<li>Bấm <b>Mở GitHub để dán</b>, đăng nhập tài khoản quản lý trang, xoá nội dung cũ, dán nội dung mới rồi bấm <b>Commit changes</b>. Sau 1 đến 2 phút trang bản đồ tự cập nhật.</li></ol>
+<p class="hint">Trang này chỉ soạn nội dung, không tự đăng. Chỉ người có quyền trên GitHub mới đưa được lên trang công khai.</p></div>
+<div class="tabs" id="tabs"></div>
+<div class="two"><div class="card"><h2 id="ft"></h2><form id="f"></form></div>
+<div class="card"><h2>Danh sách hiện có</h2><div id="ls"></div></div></div>
+<div class="card"><h2>Bước cuối: đưa lên trang</h2><p class="hint" id="st"></p>
+<textarea class="out" id="out" readonly aria-label="Nội dung tệp JSON"></textarea>
+<p><button class="btn g" id="cp" type="button">Sao chép nội dung</button> <a class="btn o" id="gh" href="#" target="_blank" rel="noopener">Mở GitHub để dán</a> <span class="ok" id="ms"></span></p></div>
+</main>
+<script>
+var SITE=[['tc','Trường chính'],['vt','Điểm trường Vĩnh Thành'],['ph','Phân hiệu'],['np','Điểm trường Ninh Phước']];
+var DS={
+events:{l:'Hoạt động và sự kiện',t:function(x){return x.title},s:function(x){return (x.from||'')+' · '+(x.place||'')},f:[['title','Tên hoạt động','text',1],['site','Trụ sở tổ chức','site'],['place','Địa điểm cụ thể','text'],['from','Từ ngày','date',1],['to','Đến ngày (bỏ trống nếu chỉ 1 ngày)','date'],['desc','Mô tả ngắn','area'],['link','Liên kết tìm hiểu thêm (bắt đầu bằng https://)','text']]},
+classes:{l:'Lớp học',t:function(x){return 'Lớp '+x.name},s:function(x){return x.teacher||''},f:[['name','Tên lớp (ví dụ 3A)','text',1],['teacher','Giáo viên chủ nhiệm','text'],['site','Trụ sở','site'],['slogan','Khẩu hiệu của lớp','text']]},
+products:{l:'Sản phẩm của lớp',t:function(x){return x.title},s:function(x){return x.date||''},f:[['title','Tên sản phẩm','text',1],['cls','Lớp','cls',1],['desc','Mô tả ngắn','area'],['image','Đường dẫn ảnh (ví dụ assets/img/a.jpg)','text'],['link','Liên kết (https://...)','text'],['date','Ngày duyệt','date',1],['total','Tổng điểm (0 đến 50)','number']]}};
+var $=function(i){return document.getElementById(i)},cur='events',D={events:[],classes:[],products:[]},ed=-1;
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function gh(f){var h=location.hostname,p=location.pathname.split('/')[1];return /github\.io$/.test(h)&&p?'https://github.com/'+h.split('.')[0]+'/'+p+'/edit/main/data/'+f+'.json':''}
+function tabs(){$('tabs').innerHTML=Object.keys(DS).map(function(k){return'<button type="button" data-k="'+k+'" aria-pressed="'+(k===cur)+'">'+DS[k].l+' ('+D[k].length+')</button>'}).join('')}
+function form(){var d=DS[cur],h='';
+if(cur==='products'&&!D.classes.length)h+='<p class="hint">Chưa có lớp nào. Hãy thêm lớp ở mục Lớp học trước.</p>';
+d.f.forEach(function(f){var k=f[0],v=ed>=0&&D[cur][ed][k]!=null?D[cur][ed][k]:'',lb='<label>'+f[1]+(f[3]?' *':'')+'<br>',rq=f[3]?' required':'';
+if(f[2]==='area')h+=lb+'<textarea name="'+k+'" rows="3">'+esc(v)+'</textarea></label>';
+else if(f[2]==='site')h+=lb+'<select name="'+k+'">'+SITE.map(function(s){return'<option value="'+s[0]+'"'+(v===s[0]?' selected':'')+'>'+s[1]+'</option>'}).join('')+'</select></label>';
+else if(f[2]==='cls')h+=lb+'<select name="'+k+'"'+rq+'>'+D.classes.map(function(c){return'<option value="'+esc(c.id)+'"'+(v===c.id?' selected':'')+'>Lớp '+esc(c.name)+'</option>'}).join('')+'</select></label>';
+else h+=lb+'<input name="'+k+'" type="'+f[2]+'"'+(f[2]==='number'?' min="0" max="50"':'')+' value="'+esc(v)+'"'+rq+'></label>'});
+h+='<button class="btn" type="submit">'+(ed>=0?'Cập nhật mục này':'Lưu vào danh sách')+'</button>'+(ed>=0?' <button class="btn o" type="button" id="cn">Huỷ sửa</button>':'');
+$('f').innerHTML=h;$('ft').textContent=(ed>=0?'Sửa: ':'Thêm mới: ')+d.l;if($('cn'))$('cn').onclick=function(){ed=-1;all()}}
+function list(){var d=DS[cur];$('ls').innerHTML=D[cur].length?D[cur].map(function(x,i){return'<div class="it"><div><b>'+esc(d.t(x))+'</b><small>'+esc(d.s(x))+'</small></div><div><button class="btn o" type="button" data-e="'+i+'">Sửa</button> <button class="btn o" type="button" data-d="'+i+'">Xoá</button></div></div>'}).join(''):'<p class="hint">Chưa có mục nào.</p>'}
+function out(){$('out').value=JSON.stringify(D[cur],null,2)+'\n';var g=gh(cur);$('gh').href=g||'#';$('gh').style.opacity=g?1:.5;$('st').textContent=g?'Nội dung dưới đây là toàn bộ tệp data/'+cur+'.json. Sao chép, mở GitHub, dán đè lên nội dung cũ.':'Chưa nhận ra địa chỉ GitHub (đang mở trên máy). Khi đã đăng lên GitHub Pages, nút này sẽ mở đúng tệp cần sửa.';$('ms').textContent=''}
+function all(){tabs();form();list();out()}
+$('tabs').onclick=function(e){var b=e.target.closest('button');if(b){cur=b.dataset.k;ed=-1;all()}};
+$('ls').onclick=function(e){var b=e.target.closest('button');if(!b)return;if(b.dataset.e!=null){ed=+b.dataset.e;form();window.scrollTo(0,0)}else if(confirm('Xoá mục này khỏi danh sách?')){D[cur].splice(+b.dataset.d,1);ed=-1;all()}};
+$('f').onsubmit=function(e){e.preventDefault();var o={},fd=new FormData($('f'));DS[cur].f.forEach(function(f){var v=String(fd.get(f[0])||'').trim();o[f[0]]=f[2]==='number'?(v===''?0:Number(v)):v});
+if(o.link&&!/^https:\/\//i.test(o.link)){alert('Liên kết phải bắt đầu bằng https://');return}
+if(cur==='events'&&o.to&&o.to<o.from){alert('Ngày kết thúc phải sau ngày bắt đầu');return}
+if(cur==='events'&&!o.to)o.to=o.from;
+if(cur==='classes'){o.id=ed>=0&&D.classes[ed].id?D.classes[ed].id:'l'+o.name.toLowerCase().replace(/[^a-z0-9]/g,'');if(D.classes.some(function(c,i){return c.id===o.id&&i!==ed})){alert('Lớp này đã có.');return}}
+if(cur==='products'&&!o.cls){alert('Hãy chọn lớp.');return}
+if(ed>=0)D[cur][ed]=o;else D[cur].push(o);ed=-1;all()};
+$('cp').onclick=function(){var t=$('out');t.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}if(navigator.clipboard)navigator.clipboard.writeText(t.value).then(function(){$('ms').textContent='Đã sao chép.'},function(){$('ms').textContent=ok?'Đã sao chép.':'Hãy bấm Ctrl+C.'});else $('ms').textContent=ok?'Đã sao chép.':'Hãy bấm Ctrl+C.'};
+Promise.all(Object.keys(DS).map(function(k){return fetch('data/'+k+'.json?'+Date.now()).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){D[k]=j}).catch(function(){})})).then(all);
+all();
+</script>
+</body>
+</html>
