@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "title": "Lễ phát động hưởng ứng Ngày Văn hoá Việt Nam 24/11",
+    "site": "tc",
+    "place": "Sân trường, Trường chính",
+    "from": "2026-11-23",
+    "to": "2026-11-23",
+    "desc": "Hoạt động dự kiến: toàn trường chào cờ, phát động phong trào và giới thiệu bản đồ văn hoá số. Nhà trường điều chỉnh thời gian, địa điểm chính thức.",
+    "link": ""
+  },
+  {
+    "title": "Hội thi kể chuyện: Những câu chuyện đẹp quê em",
+    "site": "vt",
+    "place": "Điểm trường Vĩnh Thành",
+    "from": "2026-11-20",
+    "to": "2026-11-20",
+    "desc": "Hoạt động dự kiến: học sinh kể chuyện về tình bạn, thầy cô, mái trường và quê hương. Nhà trường điều chỉnh thông tin chính thức.",
+    "link": ""
+  },
+  {
+    "title": "Triển lãm tranh và sản phẩm sáng tạo của các lớp",
+    "site": "ph",
+    "place": "Phân hiệu",
+    "from": "2026-11-18",
+    "to": "2026-11-24",
+    "desc": "Hoạt động dự kiến: trưng bày tranh, thiệp, sản phẩm tái chế và bài viết về văn hoá. Nhà trường điều chỉnh thông tin chính thức.",
+    "link": ""
+  },
+  {
+    "title": "Giao lưu văn nghệ chào mừng Ngày Văn hoá Việt Nam",
+    "site": "np",
+    "place": "Điểm trường Ninh Phước",
+    "from": "2026-11-24",
+    "to": "2026-11-24",
+    "desc": "Hoạt động dự kiến: các tiết mục hát, múa, đọc thơ của học sinh. Nhà trường điều chỉnh thông tin chính thức.",
+    "link": ""
+  }
+]
