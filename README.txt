@@ -1,11 +1,15 @@
-HƯỚNG DẪN NHANH
-0. Cập nhật hoạt động, lớp, sản phẩm bằng trang quan-tri.html (mở tại .../quan-tri.html, làm theo 4 bước trên trang), không cần sửa JSON bằng tay.
-   Ảnh 4 trụ sở đã nhúng sẵn trong index.html.
-1. Đưa index.html và thư mục data lên GitHub (Add file > Upload files), Commit. index.html đã chứa sẵn giao diện, mã và logo nên chỉ cần tệp này là trang chạy.
-2. Dữ liệu nằm trong thư mục data (không bắt buộc). Sửa trực tiếp trên GitHub bằng biểu tượng cây bút:
-   - events.json (4 hoạt động mẫu dự kiến, hãy sửa thành thông tin thật của nhà trường): hoạt động, ví dụ {"title":"Hội diễn văn nghệ","site":"tc","place":"Sân trường","from":"2026-11-24","to":"2026-11-24","desc":"...","link":"https://..."}
-   - classes.json: {"id":"l3a","name":"3A","teacher":"Họ tên GVCN","site":"tc"}
-   - products.json: {"title":"...","desc":"...","cls":"l3a","image":"assets/img/a.jpg","link":"https://...","date":"2026-11-10","total":42}
-   - sites.json: lat, lng, note, photo cho trụ sở tc, vt, ph, np. config.json: formUrl (biểu mẫu gửi sản phẩm), diaChi, dienThoai, email.
-3. Mã trụ sở: tc = Trường chính, vt = Vĩnh Thành, ph = Phân hiệu, np = Ninh Phước.
-4. Chỉ đăng hình ảnh, tư liệu được phép sử dụng; không đăng thông tin cá nhân học sinh.
+HƯỚNG DẪN NHANH (bản v5)
+
+1. Đưa index.html và thư mục data lên GitHub (Add file > Upload files), bấm Commit. Trang đã chứa sẵn giao diện, logo và ảnh 4 trụ sở.
+   Trang không còn liên kết quản trị. Không cần tải tệp quan-tri.html lên GitHub.
+
+2. Thêm VIDEO HOẠT ĐỘNG TIÊU BIỂU (cách đơn giản nhất): đổi tên video của em thành clip.mp4, rồi tải lên GitHub
+   (Add file > Upload files) ngay cạnh index.html, bấm Commit. Trang tự phát video ở mục "Hoạt động tiêu biểu".
+   Không có tệp clip.mp4 thì mục này tự ẩn. Xoá clip.mp4 là video biến mất.
+   - Nên dùng định dạng MP4 (H.264), dưới 25 MB (giới hạn khi tải bằng trình duyệt).
+   - Video lớn hơn: đăng lên YouTube rồi dán link vào data/config.json, mục "video" > "url". Dùng được cả link Facebook công khai và Google Drive.
+   - Muốn có tên và mô tả dưới video: điền "title" và "desc" trong data/config.json, mục "video".
+3. Các hoạt động khác sửa trong data/events.json (4 hoạt động đang là dự kiến, hãy sửa thành thông tin thật).
+   classes.json, products.json, sites.json, config.json (formUrl, diaChi, dienThoai, email).
+4. Mã trụ sở: tc = Trường chính, vt = Vĩnh Thành, ph = Phân hiệu, np = Ninh Phước.
+5. Chỉ đăng hình ảnh, video được phép sử dụng; không đăng thông tin cá nhân học sinh.
