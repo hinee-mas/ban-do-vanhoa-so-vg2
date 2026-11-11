@@ -1,0 +1,2 @@
+Mỗi hoạt động một thư mục con, ví dụ hoat-dong/le-phat-dong/ chứa clip.mp4, anh1.jpg, anh2.jpg.
+Tải cả thư mục hoat-dong lên GitHub rồi ghi đường dẫn vào data/events.json (hoặc dùng soan-noi-dung.html).
